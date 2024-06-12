@@ -11,6 +11,7 @@ import (
 func insertAgency(context *gin.Context) {
 	var agency models.Agency
 
+//Binding with json data
 	err := context.ShouldBindJSON(&agency)
 	if err != nil {
 		context.IndentedJSON(http.StatusBadRequest, gin.H{"message": "Could Not Parse Agency Data"})
@@ -36,6 +37,7 @@ func updateAgency(context *gin.Context) {
 		context.IndentedJSON(http.StatusBadRequest, gin.H{"message": "Could Not Parse State"})
 		return
 	}
+	//Update agencyid and statename
 	agency, err := models.Update(agencyId, agencyStateName.State)
 
 	if err != nil {
